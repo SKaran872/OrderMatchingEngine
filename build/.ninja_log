@@ -1,0 +1,6 @@
+# ninja log v6
+18	481	7944072588777894	CMakeFiles/MatchingEngine.dir/src/Order.cpp.obj	8c518e37c741e387
+12	677	7944072588709800	CMakeFiles/MatchingEngine.dir/src/MatchingEngine.cpp.obj	1d64c811b1d47dbd
+6	767	7944072588648164	CMakeFiles/MatchingEngine.dir/src/LimitOrderBook.cpp.obj	6f9820decdca40a5
+25	707	7944072588848070	CMakeFiles/MatchingEngine.dir/src/main.cpp.obj	26ca87e8f815c3dd
+767	1068	7944072596258574	MatchingEngine.exe	6aac8a4f6fb91ebd
