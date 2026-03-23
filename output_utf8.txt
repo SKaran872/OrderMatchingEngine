@@ -1,0 +1,43 @@
+﻿Starting Matching Engine Simulation...
+
+[1] Adding buy orders...
+=== LIMIT ORDER BOOK: AAPL ===
+--- ASKS ---
+--- BIDS ---
+150 : 150
+149 : 200
+================================
+
+[2] Adding sell orders (no crossing)...
+=== LIMIT ORDER BOOK: AAPL ===
+--- ASKS ---
+152 : 300
+151 : 100
+--- BIDS ---
+150 : 150
+149 : 200
+================================
+
+[3] Making a trade matching best bid...
+TRADE EXECUTED: 100 AAPL @ 150 (B1 vs S3)
+TRADE EXECUTED: 20 AAPL @ 150 (B2 vs S3)
+=== LIMIT ORDER BOOK: AAPL ===
+--- ASKS ---
+152 : 300
+151 : 100
+--- BIDS ---
+150 : 30
+149 : 200
+================================
+
+[4] Cancelling an order...
+Order B3 cancelled.
+=== LIMIT ORDER BOOK: AAPL ===
+--- ASKS ---
+152 : 300
+151 : 100
+--- BIDS ---
+150 : 30
+================================
+
+Simulation Finished.

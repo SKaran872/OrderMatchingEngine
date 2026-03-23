@@ -5,6 +5,7 @@
 #include <list>
 #include <unordered_map>
 #include <string>
+#include <mutex>
 
 namespace MatchingEngine {
 
@@ -12,6 +13,7 @@ namespace MatchingEngine {
 class LimitOrderBook : public IOrderBook {
 private:
     std::string symbol;
+    mutable std::mutex bookMutex;
 
     // Bids (Buy orders): highest price first -> std::greater
     std::map<double, std::list<std::shared_ptr<Order>>, std::greater<double>> bids;

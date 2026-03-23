@@ -14,6 +14,13 @@ enum class OrderType {
     MARKET
 };
 
+enum class OrderStatus {
+    NEW,
+    PARTIALLY_FILLED,
+    FILLED,
+    CANCELED
+};
+
 class Order {
 private:
     std::string orderId;
@@ -24,6 +31,7 @@ private:
     long long quantity;
     long long initialQuantity;
     long long timestamp;
+    OrderStatus status;
 
 public:
     Order(std::string id, std::string sym, Side s, OrderType t, double p, long long q);
@@ -37,8 +45,10 @@ public:
     long long getQuantity() const { return quantity; }
     long long getInitialQuantity() const { return initialQuantity; }
     long long getTimestamp() const { return timestamp; }
+    OrderStatus getStatus() const { return status; }
 
     // Setters
+    void setStatus(OrderStatus s) { status = s; }
     void fill(long long qty);
     bool isFilled() const { return quantity == 0; }
 };

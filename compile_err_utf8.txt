@@ -1,0 +1,529 @@
+﻿g++ : In file 
+included from src/Limi
+tOrderBook.cpp:1:0:
+At line:1 char:1
++ g++ -std=c++17 
+-Iinclude 
+src/Order.cpp src/Limi
+tOrderBook.cpp 
+src/Mat ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : 
+NotSpecified: (I    n 
+file include...erBo   
+ ok.cpp:1:0::String) 
+[    ], 
+RemoteException
+    + 
+FullyQualifiedError   
+ Id : 
+NativeCommandErr    or
+ 
+include/LimitOrderBook
+.h:16:18: error: 
+'mutex' in namespace 
+'std' does not name a 
+type
+     mutable 
+std::mutex bookMutex;
+                  
+^~~~~
+src/LimitOrderBook.cpp
+: In member function 
+'virtual void Matching
+Engine::LimitOrderBook
+::addOrder(std::shared
+_ptr<MatchingEngine::O
+rder>)':
+src/LimitOrderBook.cpp
+:12:21: error: 
+'mutex' is not a 
+member of 'std'
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                     
+^~~
+src/LimitOrderBook.cpp
+:12:31: error: 
+template argument 1 
+is invalid
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                      
+         ^
+src/LimitOrderBook.cpp
+:12:38: error: 
+'bookMutex' was not 
+declared in this scope
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                      
+                
+^~~~~~~~~
+src/LimitOrderBook.cpp
+: In member function 
+'virtual void Matching
+Engine::LimitOrderBook
+::cancelOrder(const 
+string&)':
+src/LimitOrderBook.cpp
+:28:21: error: 
+'mutex' is not a 
+member of 'std'
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                     
+^~~
+src/LimitOrderBook.cpp
+:28:31: error: 
+template argument 1 
+is invalid
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                      
+         ^
+src/LimitOrderBook.cpp
+:28:38: error: 
+'bookMutex' was not 
+declared in this scope
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                      
+                
+^~~~~~~~~
+src/LimitOrderBook.cpp
+: In member function 
+'virtual void Matching
+Engine::LimitOrderBook
+::printBook() const':
+src/LimitOrderBook.cpp
+:109:21: error: 
+'mutex' is not a 
+member of 'std'
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                     
+^~~
+src/LimitOrderBook.cpp
+:109:31: error: 
+template argument 1 
+is invalid
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                      
+         ^
+src/LimitOrderBook.cpp
+:109:38: error: 
+'bookMutex' was not 
+declared in this scope
+     std::lock_guard<s
+td::mutex> 
+lock(bookMutex);
+                      
+                
+^~~~~~~~~
+In file included from 
+include/MatchingEngine
+.h:3:0,
+                 from 
+src/MatchingEngine.cpp
+:1:
+include/LimitOrderBook
+.h:16:18: error: 
+'mutex' in namespace 
+'std' does not name a 
+type
+     mutable 
+std::mutex bookMutex;
+                  
+^~~~~
+In file included from 
+src/MatchingEngine.cpp
+:1:0:
+include/MatchingEngine
+.h:16:18: error: 
+'shared_mutex' in 
+namespace 'std' does 
+not name a type
+     mutable 
+std::shared_mutex 
+engineMutex;
+                  
+^~~~~~~~~~~~
+include/MatchingEngine
+.h:18:18: error: 
+'mutex' in namespace 
+'std' does not name a 
+type
+     mutable 
+std::mutex 
+latencyMutex;
+                  
+^~~~~
+src/MatchingEngine.cpp
+: In member function 
+'void MatchingEngine::
+Engine::addOrder(std::
+shared_ptr<MatchingEng
+ine::Order>)':
+src/MatchingEngine.cpp
+:16:26: error: 
+'shared_mutex' is not 
+a member of 'std'
+         std::shared_l
+ock<std::shared_mutex>
+ 
+readLock(engineMutex);
+                      
+    ^~~
+src/MatchingEngine.cpp
+:16:43: error: 
+template argument 1 
+is invalid
+         std::shared_l
+ock<std::shared_mutex>
+ 
+readLock(engineMutex);
+                      
+                     ^
+src/MatchingEngine.cpp
+:16:54: error: 
+'engineMutex' was not 
+declared in this scope
+         std::shared_l
+ock<std::shared_mutex>
+ 
+readLock(engineMutex);
+                      
+                      
+          ^~~~~~~~~~~
+src/MatchingEngine.cpp
+:24:26: error: 
+'shared_mutex' is not 
+a member of 'std'
+         std::unique_l
+ock<std::shared_mutex>
+ writeLock(engineMutex
+);
+                      
+    ^~~
+src/MatchingEngine.cpp
+:24:43: error: 
+template argument 1 
+is invalid
+         std::unique_l
+ock<std::shared_mutex>
+ writeLock(engineMutex
+);
+                      
+                     ^
+src/MatchingEngine.cpp
+:24:55: error: 
+'engineMutex' was not 
+declared in this scope
+         std::unique_l
+ock<std::shared_mutex>
+ writeLock(engineMutex
+);
+                      
+                      
+           ^~~~~~~~~~~
+src/MatchingEngine.cpp
+:39:21: error: 
+'mutex' is not a 
+member of 'std'
+     std::lock_guard<s
+td::mutex> 
+lock(latencyMutex);
+                     
+^~~
+src/MatchingEngine.cpp
+:39:31: error: 
+template argument 1 
+is invalid
+     std::lock_guard<s
+td::mutex> 
+lock(latencyMutex);
+                      
+         ^
+src/MatchingEngine.cpp
+:39:38: error: 
+'latencyMutex' was 
+not declared in this 
+scope
+     std::lock_guard<s
+td::mutex> 
+lock(latencyMutex);
+                      
+                
+^~~~~~~~~~~~
+src/MatchingEngine.cpp
+: In member function 
+'void MatchingEngine::
+Engine::cancelOrder(co
+nst string&, const 
+string&)':
+src/MatchingEngine.cpp
+:44:22: error: 
+'shared_mutex' is not 
+a member of 'std'
+     std::shared_lock<
+std::shared_mutex> 
+readLock(engineMutex);
+                      
+^~~
+src/MatchingEngine.cpp
+:44:39: error: 
+template argument 1 
+is invalid
+     std::shared_lock<
+std::shared_mutex> 
+readLock(engineMutex);
+                      
+                 ^
+src/MatchingEngine.cpp
+:44:50: error: 
+'engineMutex' was not 
+declared in this scope
+     std::shared_lock<
+std::shared_mutex> 
+readLock(engineMutex);
+                      
+                      
+      ^~~~~~~~~~~
+src/MatchingEngine.cpp
+: In member function 
+'void MatchingEngine::
+Engine::printBook(cons
+t string&) const':
+src/MatchingEngine.cpp
+:54:22: error: 
+'shared_mutex' is not 
+a member of 'std'
+     std::shared_lock<
+std::shared_mutex> 
+readLock(engineMutex);
+                      
+^~~
+src/MatchingEngine.cpp
+:54:39: error: 
+template argument 1 
+is invalid
+     std::shared_lock<
+std::shared_mutex> 
+readLock(engineMutex);
+                      
+                 ^
+src/MatchingEngine.cpp
+:54:50: error: 
+'engineMutex' was not 
+declared in this scope
+     std::shared_lock<
+std::shared_mutex> 
+readLock(engineMutex);
+                      
+                      
+      ^~~~~~~~~~~
+src/MatchingEngine.cpp
+: In member function 
+'void MatchingEngine::
+Engine::printLatencySt
+ats() const':
+src/MatchingEngine.cpp
+:64:21: error: 
+'mutex' is not a 
+member of 'std'
+     std::lock_guard<s
+td::mutex> 
+lock(latencyMutex);
+                     
+^~~
+src/MatchingEngine.cpp
+:64:31: error: 
+template argument 1 
+is invalid
+     std::lock_guard<s
+td::mutex> 
+lock(latencyMutex);
+                      
+         ^
+src/MatchingEngine.cpp
+:64:38: error: 
+'latencyMutex' was 
+not declared in this 
+scope
+     std::lock_guard<s
+td::mutex> 
+lock(latencyMutex);
+                      
+                
+^~~~~~~~~~~~
+In file included from 
+include/MatchingEngine
+.h:3:0,
+                 from 
+src/main.cpp:1:
+include/LimitOrderBook
+.h:16:18: error: 
+'mutex' in namespace 
+'std' does not name a 
+type
+     mutable 
+std::mutex bookMutex;
+                  
+^~~~~
+In file included from 
+src/main.cpp:1:0:
+include/MatchingEngine
+.h:16:18: error: 
+'shared_mutex' in 
+namespace 'std' does 
+not name a type
+     mutable 
+std::shared_mutex 
+engineMutex;
+                  
+^~~~~~~~~~~~
+include/MatchingEngine
+.h:18:18: error: 
+'mutex' in namespace 
+'std' does not name a 
+type
+     mutable 
+std::mutex 
+latencyMutex;
+                  
+^~~~~
+src/main.cpp: In 
+function 'void runSimu
+lations(MatchingEngine
+::Engine&, int)':
+src/main.cpp:18:14: 
+error: 
+'std::this_thread' 
+has not been declared
+         std::this_thr
+ead::sleep_for(std::ch
+rono::milliseconds(10)
+);
+              
+^~~~~~~~~~~
+src/main.cpp: In 
+function 'int main()':
+src/main.cpp:29:17: 
+error: 'thread' is 
+not a member of 'std'
+     std::vector<std::
+thread> threads;
+                 ^~~
+src/main.cpp:29:28: 
+error: template 
+argument 1 is invalid
+     std::vector<std::
+thread> threads;
+                      
+      ^
+src/main.cpp:29:28: 
+error: template 
+argument 2 is invalid
+src/main.cpp:31:17: 
+error: request for 
+member 'emplace_back' 
+in 'threads', which 
+is of non-class type 
+'int'
+         threads.empla
+ce_back(runSimulations
+, std::ref(engine), 
+i);
+                 
+^~~~~~~~~~~~
+src/main.cpp:35:20: 
+error: 'begin' was 
+not declared in this 
+scope
+     for (auto& t : 
+threads) {
+                    
+^~~~~~~
+src/main.cpp:35:20: 
+note: suggested 
+alternative:
+In file included from 
+c:\mingw\lib\gcc\mingw
+32\6.3.0\include\c++\s
+tring:51:0,
+                 from 
+include/Order.h:3,
+                 from 
+include/IOrderBook.h:3
+,
+                 from 
+include/LimitOrderBook
+.h:3,
+                 from 
+include/MatchingEngine
+.h:3,
+                 from 
+src/main.cpp:1:
+c:\mingw\lib\gcc\mingw
+32\6.3.0\include\c++\b
+its\range_access.h:105
+:37: note:   
+'std::begin'
+   template<typename 
+_Tp> const _Tp* 
+begin(const 
+valarray<_Tp>&);
+                      
+               ^~~~~
+src/main.cpp:35:20: 
+error: 'end' was not 
+declared in this scope
+     for (auto& t : 
+threads) {
+                    
+^~~~~~~
+src/main.cpp:35:20: 
+note: suggested 
+alternative:
+In file included from 
+c:\mingw\lib\gcc\mingw
+32\6.3.0\include\c++\s
+tring:51:0,
+                 from 
+include/Order.h:3,
+                 from 
+include/IOrderBook.h:3
+,
+                 from 
+include/LimitOrderBook
+.h:3,
+                 from 
+include/MatchingEngine
+.h:3,
+                 from 
+src/main.cpp:1:
+c:\mingw\lib\gcc\mingw
+32\6.3.0\include\c++\b
+its\range_access.h:107
+:37: note:   
+'std::end'
+   template<typename 
+_Tp> const _Tp* 
+end(const 
+valarray<_Tp>&);
+                      
+               ^~~
