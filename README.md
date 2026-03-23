@@ -8,6 +8,10 @@ A high-performance algorithmic Order Matching Engine implemented in C++. This pr
 - **Price-Time Priority Matching**: Ensures that orders are matched fairly based on the best price, and time of entry in case of a tie.
 - **Order Management**: Supports adding orders (Limit orders with Buy/Sell sides) and canceling existing active orders.
 - **Fast Execution & Lookup**: Uses `std::map`, `std::list`, and `std::unordered_map` strategically for optimal time complexity, including `O(1)` order lookups for fast cancellations.
+- **Concurrency Support**: Thread-safe mechanisms for handling multiple orders simultaneously.
+- **Partial Fills**: Explicit tracking and execution of partially filled orders.
+- **Latency Measurement**: Performance metrics tracking for order processing and matching.
+- **Clean Codebase**: Refactored to use standard namespace conventions (`std::`) efficiently.
 
 ## Directory Structure
 
