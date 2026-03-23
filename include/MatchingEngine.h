@@ -8,20 +8,22 @@
 #include <vector>
 #include <atomic>
 
+using namespace std;
+
 namespace MatchingEngine {
 
 class Engine {
 private:
-    std::unordered_map<std::string, std::unique_ptr<LimitOrderBook>> orderBooks;
-    mutable std::shared_mutex engineMutex;
+    unordered_map<string, unique_ptr<LimitOrderBook>> orderBooks;
+    mutable shared_mutex engineMutex;
 
-    mutable std::mutex latencyMutex;
-    std::vector<long long> latencies_us;
+    mutable mutex latencyMutex;
+    vector<long long> latencies_us;
 
 public:
-    void addOrder(std::shared_ptr<Order> order);
-    void cancelOrder(const std::string& symbol, const std::string& orderId);
-    void printBook(const std::string& symbol) const;
+    void addOrder(shared_ptr<Order> order);
+    void cancelOrder(const string& symbol, const string& orderId);
+    void printBook(const string& symbol) const;
     void printLatencyStats() const;
 };
 

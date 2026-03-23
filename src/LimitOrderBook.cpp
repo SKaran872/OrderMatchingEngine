@@ -2,30 +2,32 @@
 #include <iostream>
 #include <algorithm>
 
+using namespace std;
+
 namespace MatchingEngine {
 
-LimitOrderBook::LimitOrderBook(std::string sym) : symbol(std::move(sym)) {}
+LimitOrderBook::LimitOrderBook(string sym) : symbol(move(sym)) {}
 
-void LimitOrderBook::addOrder(std::shared_ptr<Order> order) {
+void LimitOrderBook::addOrder(shared_ptr<Order> order) {
     if (order->getQuantity() <= 0) return;
 
-    std::lock_guard<std::mutex> lock(bookMutex);
+    lock_guard<mutex> lock(bookMutex);
 
     if (order->getSide() == Side::BUY) {
         bids[order->getPrice()].push_back(order);
-        auto it = std::prev(bids[order->getPrice()].end());
+        auto it = prev(bids[order->getPrice()].end());
         ordersMap[order->getOrderId()] = {order, it};
     } else {
         asks[order->getPrice()].push_back(order);
-        auto it = std::prev(asks[order->getPrice()].end());
+        auto it = prev(asks[order->getPrice()].end());
         ordersMap[order->getOrderId()] = {order, it};
     }
 
     match();
 }
 
-void LimitOrderBook::cancelOrder(const std::string& orderId) {
-    std::lock_guard<std::mutex> lock(bookMutex);
+void LimitOrderBook::cancelOrder(const string& orderId) {
+    lock_guard<mutex> lock(bookMutex);
     auto it = ordersMap.find(orderId);
     if (it != ordersMap.end()) {
         auto& loc = it->second;
@@ -43,7 +45,7 @@ void LimitOrderBook::cancelOrder(const std::string& orderId) {
         }
         ordersMap.erase(it);
         order->setStatus(OrderStatus::CANCELED);
-        std::cout << "Order " << orderId << " cancelled.\n";
+        cout << "Order " << orderId << " cancelled.\n";
     }
 }
 
@@ -71,17 +73,17 @@ void LimitOrderBook::match() {
             auto bidOrder = bidQueue.front();
             auto askOrder = askQueue.front();
 
-            long long tradeQuantity = std::min(bidOrder->getQuantity(), askOrder->getQuantity());
+            long long tradeQuantity = min(bidOrder->getQuantity(), askOrder->getQuantity());
             double tradePrice = bidOrder->getTimestamp() < askOrder->getTimestamp() ? bidOrder->getPrice() : askOrder->getPrice();
 
-            std::cout << "TRADE EXECUTED: " << tradeQuantity << " " << symbol 
+            cout << "TRADE EXECUTED: " << tradeQuantity << " " << symbol 
                       << " @ " << tradePrice << " (" << bidOrder->getOrderId() 
                       << " vs " << askOrder->getOrderId() << ")";
 
             if (bidOrder->getQuantity() > tradeQuantity || askOrder->getQuantity() > tradeQuantity) {
-                std::cout << " [PARTIAL FILL]\n";
+                cout << " [PARTIAL FILL]\n";
             } else {
-                std::cout << " [FULL FILL]\n";
+                cout << " [FULL FILL]\n";
             }
 
             bidOrder->fill(tradeQuantity);
@@ -106,21 +108,21 @@ void LimitOrderBook::match() {
 }
 
 void LimitOrderBook::printBook() const {
-    std::lock_guard<std::mutex> lock(bookMutex);
-    std::cout << "=== LIMIT ORDER BOOK: " << symbol << " ===\n";
-    std::cout << "--- ASKS ---\n";
+    lock_guard<mutex> lock(bookMutex);
+    cout << "=== LIMIT ORDER BOOK: " << symbol << " ===\n";
+    cout << "--- ASKS ---\n";
     for (auto it = asks.rbegin(); it != asks.rend(); ++it) {
         long long totalVol = 0;
         for (const auto& o : it->second) totalVol += o->getQuantity();
-        std::cout << it->first << " : " << totalVol << "\n";
+        cout << it->first << " : " << totalVol << "\n";
     }
-    std::cout << "--- BIDS ---\n";
+    cout << "--- BIDS ---\n";
     for (auto it = bids.begin(); it != bids.end(); ++it) {
         long long totalVol = 0;
         for (const auto& o : it->second) totalVol += o->getQuantity();
-        std::cout << it->first << " : " << totalVol << "\n";
+        cout << it->first << " : " << totalVol << "\n";
     }
-    std::cout << "================================\n";
+    cout << "================================\n";
 }
 
 } // namespace MatchingEngine

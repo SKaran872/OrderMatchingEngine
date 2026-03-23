@@ -7,36 +7,38 @@
 #include <string>
 #include <mutex>
 
+using namespace std;
+
 namespace MatchingEngine {
 
 // Inheritance and Encapsulation
 class LimitOrderBook : public IOrderBook {
 private:
-    std::string symbol;
-    mutable std::mutex bookMutex;
+    string symbol;
+    mutable mutex bookMutex;
 
-    // Bids (Buy orders): highest price first -> std::greater
-    std::map<double, std::list<std::shared_ptr<Order>>, std::greater<double>> bids;
+    // Bids (Buy orders): highest price first -> greater
+    map<double, list<shared_ptr<Order>>, greater<double>> bids;
 
-    // Asks (Sell orders): lowest price first -> std::less
-    std::map<double, std::list<std::shared_ptr<Order>>, std::less<double>> asks;
+    // Asks (Sell orders): lowest price first -> less
+    map<double, list<shared_ptr<Order>>, less<double>> asks;
 
     // Fast lookup for O(1) order cancellation or finding
     // Maps orderId -> iterator inside the list, plus a flag for side to know which map it's in.
     struct OrderLocation {
-        std::shared_ptr<Order> order;
-        std::list<std::shared_ptr<Order>>::iterator iterator;
+        shared_ptr<Order> order;
+        list<shared_ptr<Order>>::iterator iterator;
     };
-    std::unordered_map<std::string, OrderLocation> ordersMap;
+    unordered_map<string, OrderLocation> ordersMap;
 
     void match();
 
 public:
-    explicit LimitOrderBook(std::string sym);
+    explicit LimitOrderBook(string sym);
     
     // Polymorphism: overriding base class methods
-    void addOrder(std::shared_ptr<Order> order) override;
-    void cancelOrder(const std::string& orderId) override;
+    void addOrder(shared_ptr<Order> order) override;
+    void cancelOrder(const string& orderId) override;
 
     void printBook() const override;
 };

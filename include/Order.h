@@ -2,6 +2,8 @@
 
 #include <string>
 
+using namespace std;
+
 namespace MatchingEngine {
 
 enum class Side {
@@ -23,8 +25,8 @@ enum class OrderStatus {
 
 class Order {
 private:
-    std::string orderId;
-    std::string symbol;
+    string orderId;
+    string symbol;
     Side side;
     OrderType type;
     double price;
@@ -34,11 +36,11 @@ private:
     OrderStatus status;
 
 public:
-    Order(std::string id, std::string sym, Side s, OrderType t, double p, long long q);
+    Order(string id, string sym, Side s, OrderType t, double p, long long q);
 
     // Getters
-    std::string getOrderId() const { return orderId; }
-    std::string getSymbol() const { return symbol; }
+    string getOrderId() const { return orderId; }
+    string getSymbol() const { return symbol; }
     Side getSide() const { return side; }
     OrderType getType() const { return type; }
     double getPrice() const { return price; }
